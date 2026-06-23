@@ -1,3 +1,6 @@
 .DS_Store
 *.md
 _archive/
+
+# PRIVATE — buyer records with PII. Never commit/push to the public repo.
+sales.json

@@ -19,6 +19,7 @@
   .card p { font-size: 13.5px; color: #555; line-height: 1.45; margin: 0 0 12px; flex: 1; }
   .card .price { font-size: 16px; font-weight: 600; color: #1a7a3a; margin-top: auto; }
   .card.sold { display: none; }
+  body.show-sold .card.sold { display: flex; opacity: .55; }
   .card.sold .price { text-decoration: line-through; color: #999; }
   .sold-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; display: inline-block; background: #c0392b; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .5px; padding: 1px 7px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
   .avail-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; display: inline-block; background: #1a7a3a; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .5px; padding: 1px 7px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
@@ -527,5 +528,14 @@
   </div>
 
 </div>
+<script>
+  // Add ?sold to the URL to reveal sold items (faded), e.g. .../apartment-inventory/?sold
+  if (new URLSearchParams(location.search).has('sold')) {
+    document.body.classList.add('show-sold');
+    var total = document.querySelectorAll('.card').length;
+    var sub = document.querySelector('.subtitle');
+    if (sub) sub.textContent = total + ' items (including sold)';
+  }
+</script>
 </body>
 </html>
